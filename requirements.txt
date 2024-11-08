@@ -1,5 +1,5 @@
 Flask==2.3.0
-Werkzeug==2.2.3
+Werkzeug==2.3.0
 Flask-Cors==2.1.0
 scikit-learn==1.2.2
 pandas==1.5.3
