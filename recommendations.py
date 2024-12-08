@@ -1,11 +1,11 @@
 import pandas as pd
 import numpy as np
+import os
 import joblib
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import warnings
 import random
-import os
 warnings.filterwarnings('ignore')
 
 knn_model = joblib.load('knn_model.pkl')
@@ -14,7 +14,7 @@ df = pd.read_csv('music_data.csv')
 
 non_feature_columns = ['track_id', 'artists', 'track_name']
 features = df.select_dtypes(include=[np.number]).columns.difference(non_feature_columns)
-
+    
 fallback_recommendations = [
     {'track_name': 'Heat Waves', 'artists': 'Glass Animals'},
     {'track_name': 'Sunflower', 'artists': 'Post Malone, Swae Lee'},
@@ -148,5 +148,5 @@ def recommend():
     return jsonify({'recommendations': recommendations})
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000)) 
-    app.run(host='0.0.0.0', port=port, debug=True)
+     port = int(os.environ.get('PORT', 5000)) 
+     app.run(host='0.0.0.0', port=port, debug=True)
